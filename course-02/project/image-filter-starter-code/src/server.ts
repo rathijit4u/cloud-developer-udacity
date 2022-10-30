@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { filterImageFromURL, deleteLocalFiles } from './util/util';
+import { Router, Request, Response } from 'express';
 
 (async () => {
 
@@ -30,8 +31,8 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
   /**************************************************************************** */
 
   //! END @TODO1
-  app.get("/filteredimage", async (req, res) => {
-    const imgUrl = req.query.image_url;
+  app.get("/filteredimage", async (req: Request, res: Response) => {
+    const imgUrl: string = req.query.image_url;
     if (!imgUrl) {
       res.status(404).send({ message: "Query parameter 'image_url' is missing." });
     }
@@ -52,7 +53,7 @@ import { filterImageFromURL, deleteLocalFiles } from './util/util';
 
   // Root Endpoint
   // Displays a simple message to the user
-  app.get("/", async (req, res) => {
+  app.get("/", async (req: Request, res: Response) => {
     res.send("try GET /filteredimage?image_url={{}}")
   });
 
